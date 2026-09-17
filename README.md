@@ -1,0 +1,1 @@
+# dmi-hubspot-schema-manager
