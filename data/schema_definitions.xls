@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Rovo</Author>
+  <Created>2026-09-17T08:54:00Z</Created>
+  <Company>ISS STOXX</Company>
+ </DocumentProperties>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:CharSet="0" ss:Size="11" ss:Color="#172B4D"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Header">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#0052CC"/>
+   </Borders>
+   <Font ss:FontName="Calibri" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#0747A6" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Objects">
+  <Table ss:DefaultColumnWidth="140" ss:DefaultRowHeight="20">
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="180"/>
+   <Row ss:StyleID="Header" ss:Height="24">
+    <Cell><Data ss:Type="String">name</Data></Cell>
+    <Cell><Data ss:Type="String">singularLabel</Data></Cell>
+    <Cell><Data ss:Type="String">pluralLabel</Data></Cell>
+    <Cell><Data ss:Type="String">primaryDisplayProperty</Data></Cell>
+    <Cell><Data ss:Type="String">primaryDisplayLabel</Data></Cell>
+    <Cell><Data ss:Type="String">associatedObjects</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">Subscription</Data></Cell>
+    <Cell><Data ss:Type="String">Subscriptions</Data></Cell>
+    <Cell><Data ss:Type="String">subscription_name</Data></Cell>
+    <Cell><Data ss:Type="String">Subscription Name</Data></Cell>
+    <Cell><Data ss:Type="String">CONTACT, COMPANY</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">platform_license</Data></Cell>
+    <Cell><Data ss:Type="String">Platform License</Data></Cell>
+    <Cell><Data ss:Type="String">Platform Licenses</Data></Cell>
+    <Cell><Data ss:Type="String">license_key</Data></Cell>
+    <Cell><Data ss:Type="String">License Key</Data></Cell>
+    <Cell><Data ss:Type="String">COMPANY</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+ <Worksheet ss:Name="Properties">
+  <Table ss:DefaultColumnWidth="130" ss:DefaultRowHeight="20">
+   <Column ss:Width="110"/>
+   <Column ss:Width="130"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="180"/>
+   <Column ss:Width="260"/>
+   <Column ss:Width="80"/>
+   <Row ss:StyleID="Header" ss:Height="24">
+    <Cell><Data ss:Type="String">object</Data></Cell>
+    <Cell><Data ss:Type="String">name</Data></Cell>
+    <Cell><Data ss:Type="String">label</Data></Cell>
+    <Cell><Data ss:Type="String">type</Data></Cell>
+    <Cell><Data ss:Type="String">fieldType</Data></Cell>
+    <Cell><Data ss:Type="String">groupName</Data></Cell>
+    <Cell><Data ss:Type="String">options</Data></Cell>
+    <Cell><Data ss:Type="String">unique</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">contacts</Data></Cell>
+    <Cell><Data ss:Type="String">portal_user_id</Data></Cell>
+    <Cell><Data ss:Type="String">Portal User ID</Data></Cell>
+    <Cell><Data ss:Type="String">string</Data></Cell>
+    <Cell><Data ss:Type="String">text</Data></Cell>
+    <Cell><Data ss:Type="String">contactinformation</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">TRUE</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">contacts</Data></Cell>
+    <Cell><Data ss:Type="String">billing_tier</Data></Cell>
+    <Cell><Data ss:Type="String">Billing Tier</Data></Cell>
+    <Cell><Data ss:Type="String">enumeration</Data></Cell>
+    <Cell><Data ss:Type="String">select</Data></Cell>
+    <Cell><Data ss:Type="String">contactinformation</Data></Cell>
+    <Cell><Data ss:Type="String">Enterprise, Standard, Starter</Data></Cell>
+    <Cell><Data ss:Type="String">FALSE</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">mrr</Data></Cell>
+    <Cell><Data ss:Type="String">Monthly Recurring Revenue</Data></Cell>
+    <Cell><Data ss:Type="String">number</Data></Cell>
+    <Cell><Data ss:Type="String">number</Data></Cell>
+    <Cell><Data ss:Type="String">subscription_information</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">FALSE</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">plan_tier</Data></Cell>
+    <Cell><Data ss:Type="String">Plan Tier</Data></Cell>
+    <Cell><Data ss:Type="String">enumeration</Data></Cell>
+    <Cell><Data ss:Type="String">select</Data></Cell>
+    <Cell><Data ss:Type="String">subscription_information</Data></Cell>
+    <Cell><Data ss:Type="String">Enterprise:enterprise, Standard:standard, Basic:basic</Data></Cell>
+    <Cell><Data ss:Type="String">FALSE</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">renewal_date</Data></Cell>
+    <Cell><Data ss:Type="String">Renewal Date</Data></Cell>
+    <Cell><Data ss:Type="String">date</Data></Cell>
+    <Cell><Data ss:Type="String">date</Data></Cell>
+    <Cell><Data ss:Type="String">subscription_information</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">FALSE</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">platform_license</Data></Cell>
+    <Cell><Data ss:Type="String">seats_allocated</Data></Cell>
+    <Cell><Data ss:Type="String">Seats Allocated</Data></Cell>
+    <Cell><Data ss:Type="String">number</Data></Cell>
+    <Cell><Data ss:Type="String">number</Data></Cell>
+    <Cell><Data ss:Type="String">license_information</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">FALSE</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+ <Worksheet ss:Name="Associations">
+  <Table ss:DefaultColumnWidth="140" ss:DefaultRowHeight="20">
+   <Column ss:Width="130"/>
+   <Column ss:Width="130"/>
+   <Column ss:Width="180"/>
+   <Column ss:Width="180"/>
+   <Column ss:Width="180"/>
+   <Row ss:StyleID="Header" ss:Height="24">
+    <Cell><Data ss:Type="String">fromObject</Data></Cell>
+    <Cell><Data ss:Type="String">toObject</Data></Cell>
+    <Cell><Data ss:Type="String">label</Data></Cell>
+    <Cell><Data ss:Type="String">inverseLabel</Data></Cell>
+    <Cell><Data ss:Type="String">name</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">contacts</Data></Cell>
+    <Cell><Data ss:Type="String">Primary Billing Contact</Data></Cell>
+    <Cell><Data ss:Type="String">Billed Subscriptions</Data></Cell>
+    <Cell><Data ss:Type="String">primary_billing_contact</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subscription</Data></Cell>
+    <Cell><Data ss:Type="String">companies</Data></Cell>
+    <Cell><Data ss:Type="String">Contracting Entity</Data></Cell>
+    <Cell><Data ss:Type="String">Active Subscriptions</Data></Cell>
+    <Cell><Data ss:Type="String">contracting_company</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">platform_license</Data></Cell>
+    <Cell><Data ss:Type="String">contacts</Data></Cell>
+    <Cell><Data ss:Type="String">License Administrator</Data></Cell>
+    <Cell><Data ss:Type="String">Managed Licenses</Data></Cell>
+    <Cell><Data ss:Type="String">license_admin</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>
