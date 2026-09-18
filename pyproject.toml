@@ -1,12 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "hubspot-schema-manager"
 version = "0.1.0"
 description = "HubSpot schema import utility"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
+dependencies = [
+    "openpyxl",
+    "pandas",
+    "pydantic-settings",
+    "requests",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["hubspot_schema_manager*"]
 
 [project.scripts]
 hubspot-schema-manager = "hubspot_schema_manager.cli:main"
-
-[build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"

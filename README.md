@@ -1,39 +1,43 @@
 # dmi-hubspot-schema-manager
 
-Small CLI for importing HubSpot schema metadata from spreadsheet files.
+CLI for importing HubSpot schema metadata from spreadsheet files.
 
-It can sync three resource types into HubSpot:
+It syncs three resource types into HubSpot:
 
 - Custom object schemas
 - Association labels
 - Object properties
 
-## What Is In The Codebase
-
-The code is organized into three simple layers:
-
-- `src/application/`: orchestration logic. `SchemaImporter` coordinates the import flow.
-- `src/domain/`: data models and payload-building logic for objects, associations, and properties.
-- `src/infrastructure/`: file readers and HubSpot API access.
-
-Main entry point:
-
-- `src/cli.py`: parses CLI arguments, loads settings, builds dependencies, and runs the importer.
-
 ## Requirements
 
-- Python 3.11+
-- HubSpot private app token for live runs
+- Python 3.14+
+- A HubSpot private app token for live runs
 
-Install dependencies:
+## Local Development Setup
 
-```bash
-pip install -r requirements.txt
+From the repository root:
+
+```powershell
+py -3.14 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
 
-## Configuration
+Smoke test the installed CLI:
 
-Configuration is loaded from environment variables or a local `.env` file.
+```powershell
+hubspot-schema-manager --help
+```
+
+If you do not want an editable install, use `python -m pip install .` instead.
+
+## Environment Configuration
+
+The app loads configuration from either:
+
+- Environment variables in the current shell
+- A `.env` file in the current working directory
 
 Supported settings:
 
@@ -41,7 +45,7 @@ Supported settings:
 - `BASE_URL`: optional, defaults to `https://api.hubapi.com`
 - `RATE_LIMIT_DELAY`: optional, defaults to `0.15`
 
-If `--dry-run` is used, `HUBSPOT_ACCESS_TOKEN` is not required.
+If you use `--dry-run`, `HUBSPOT_ACCESS_TOKEN` is not required.
 
 Example `.env`:
 
@@ -51,19 +55,66 @@ BASE_URL=https://api.hubapi.com
 RATE_LIMIT_DELAY=0.15
 ```
 
-## Usage
+## Run Locally
 
-Run the CLI as a module from the repository root:
+After activating the virtual environment and installing the package:
 
-```bash
-python -m src.cli <file>
-python -m src.cli <file> --dry-run
+```powershell
+hubspot-schema-manager data\schema.xlsx --dry-run
+hubspot-schema-manager data\schema.xlsx
 ```
 
-Example:
+Module form also works after install:
 
-```bash
-python -m src.cli data/schema.xlsx --dry-run
+```powershell
+python -m hubspot_schema_manager.cli data\schema.xlsx --dry-run
+```
+
+## Build Distributable Artifacts
+
+Build a wheel and source distribution from the repository root:
+
+```powershell
+python -m pip install build
+python -m build
+```
+
+Artifacts are written to `dist/`:
+
+- `dist\dmi_hubspot_schema_manager-<version>-py3-none-any.whl`
+- `dist\dmi_hubspot_schema_manager-<version>.tar.gz`
+
+## Install From a Downloaded Artifact
+
+If another developer downloads a built package from the repository or CI artifacts, they can install it without cloning the repo.
+
+Example using a wheel:
+
+```powershell
+py -3.14 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install .\dmi_hubspot_schema_manager-0.1.0-py3-none-any.whl
+```
+
+Example using a source distribution:
+
+```powershell
+py -3.14 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install .\dmi_hubspot_schema_manager-0.1.0.tar.gz
+```
+
+Then configure the environment in one of these ways:
+
+- Set `HUBSPOT_ACCESS_TOKEN`, `BASE_URL`, and `RATE_LIMIT_DELAY` in the shell
+- Create a `.env` file in the folder where you run `hubspot-schema-manager`
+
+Run the installed CLI against any spreadsheet path you can access:
+
+```powershell
+hubspot-schema-manager .\schema.xlsx --dry-run
 ```
 
 ## Supported Input Behavior
@@ -100,34 +151,29 @@ Repositories avoid duplicate creation by checking existing HubSpot resources fir
 
 ## Tests
 
-The project includes `pytest` tests for:
+Run the test suite from the repository root:
 
-- Domain model parsing and payload generation
-- Import orchestration
-- HubSpot repositories with fake HTTP clients
-
-Run tests:
-
-```bash
+```powershell
 python -m pytest
 ```
 
-`pytest.ini` is configured to use the `src` layout during test runs.
+`pytest.ini` configures the `src` layout for test runs.
 
-## Project Structure
+## Code Layout
 
 ```text
 src/
-	application/
-		schema_importer.py
-	domain/
-		models.py
-	infrastructure/
-		hubspot_client.py
-		readers.py
-		repositories.py
-	cli.py
-	config.py
+	hubspot_schema_manager/
+		application/
+			schema_importer.py
+		domain/
+			models.py
+		infrastructure/
+			hubspot_client.py
+			readers.py
+			repositories.py
+		cli.py
+		config.py
 
 tests/
 	test_models.py
