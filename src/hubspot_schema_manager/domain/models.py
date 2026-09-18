@@ -34,7 +34,7 @@ class ObjectSchemaDefinition:
     associated_objects: list[str]
 
     @classmethod
-    def from_row(cls, row: dict) -> "ObjectSchemaDefinition":
+    def from_row(cls, row: dict) -> ObjectSchemaDefinition:
         """Create an object schema definition from a spreadsheet row."""
 
         name = _trim(row.get("name"))
@@ -97,7 +97,7 @@ class AssociationDefinition:
     name: str
 
     @classmethod
-    def from_row(cls, row: dict) -> "AssociationDefinition":
+    def from_row(cls, row: dict) -> AssociationDefinition:
         """Create an association definition from a spreadsheet row."""
 
         from_object = _trim(row.get("fromObject"))
@@ -140,7 +140,7 @@ class PropertyDefinition:
     options: list[dict] | None
 
     @classmethod
-    def from_row(cls, object_type: str, row: dict) -> "PropertyDefinition":
+    def from_row(cls, object_type: str, row: dict) -> PropertyDefinition:
         """Create a property definition from a spreadsheet row."""
 
         name = _trim(row.get("name"))
