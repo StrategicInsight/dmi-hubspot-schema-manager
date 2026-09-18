@@ -3,7 +3,7 @@ from hubspot_schema_manager.infrastructure.readers import SourceReader
 from hubspot_schema_manager.infrastructure.repositories import (
     AssociationRepository,
     PropertyRepository,
-    SchemaRepository
+    SchemaRepository,
 )
 
 

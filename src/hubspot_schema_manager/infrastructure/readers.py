@@ -7,7 +7,7 @@ import pandas as pd
 from hubspot_schema_manager.domain.models import (
     AssociationDefinition,
     ObjectSchemaDefinition,
-    PropertyDefinition
+    PropertyDefinition,
 )
 
 OBJECT_SHEET_NAMES = ("objects", "schemas", "custom_objects")

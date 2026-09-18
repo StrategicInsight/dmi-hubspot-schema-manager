@@ -1,15 +1,16 @@
 """Tests for HubSpot repositories using a fake HttpClient (no real network calls)."""
+from hubspot_schema_manager.domain.models import (
+    AssociationDefinition,
+    ObjectSchemaDefinition,
+    PropertyDefinition,
+)
 from hubspot_schema_manager.infrastructure.hubspot_client import HubSpotResponse
 from hubspot_schema_manager.infrastructure.repositories import (
     AssociationRepository,
     PropertyRepository,
     SchemaRepository,
 )
-from hubspot_schema_manager.domain.models import (
-    AssociationDefinition,
-    ObjectSchemaDefinition,
-    PropertyDefinition
-)
+
 
 # pylint: disable=missing-function-docstring
 class FakeHttpClient:

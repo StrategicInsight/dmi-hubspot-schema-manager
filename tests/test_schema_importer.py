@@ -5,7 +5,7 @@ from hubspot_schema_manager.application.schema_importer import SchemaImporter
 from hubspot_schema_manager.domain.models import (
     AssociationDefinition,
     ObjectSchemaDefinition,
-    PropertyDefinition
+    PropertyDefinition,
 )
 from hubspot_schema_manager.infrastructure.repositories import (
     AssociationRepository,
@@ -13,8 +13,8 @@ from hubspot_schema_manager.infrastructure.repositories import (
     SchemaRepository,
 )
 
-# pylint: disable=missing-function-docstring
 
+# pylint: disable=missing-function-docstring
 class FakeReader:
     """Fake SourceReader returning canned definitions."""
 

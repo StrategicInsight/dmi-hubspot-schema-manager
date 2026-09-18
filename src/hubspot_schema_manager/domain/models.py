@@ -1,4 +1,5 @@
 """Domain models for the three importable HubSpot resource types."""
+import math
 from dataclasses import dataclass
 
 
@@ -7,7 +8,7 @@ def _trim(value: object, default: str = "") -> str:
 
     if value is None:
         return default
-    if isinstance(value, float) and value != value:  # NaN check without a pandas dependency
+    if isinstance(value, float) and math.isnan(value):  # NaN check without a pandas dependency
         return default
     text = str(value).strip()
     return text if text else default

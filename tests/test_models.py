@@ -2,8 +2,9 @@
 from hubspot_schema_manager.domain.models import (
     AssociationDefinition,
     ObjectSchemaDefinition,
-    PropertyDefinition
+    PropertyDefinition,
 )
+
 
 # pylint: disable=missing-function-docstring
 class TestObjectSchemaDefinition:

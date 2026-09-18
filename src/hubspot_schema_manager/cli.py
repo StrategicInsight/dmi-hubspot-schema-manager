@@ -3,11 +3,15 @@ import argparse
 import sys
 from pathlib import Path
 
+from .application.schema_importer import SchemaImporter
 from .config import Settings
 from .infrastructure.hubspot_client import HubSpotClient
-from .application.schema_importer import SchemaImporter
 from .infrastructure.readers import create_reader
-from .infrastructure.repositories import AssociationRepository, PropertyRepository, SchemaRepository
+from .infrastructure.repositories import (
+    AssociationRepository,
+    PropertyRepository,
+    SchemaRepository,
+)
 
 SECTION_SEPARATOR = "=" * 70
 
