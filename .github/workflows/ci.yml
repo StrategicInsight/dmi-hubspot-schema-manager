@@ -38,6 +38,11 @@ jobs:
         run: |
           python -m pytest -q
 
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Build package
         run: |
           python -m build
@@ -47,3 +52,4 @@ jobs:
         with:
           name: package
           path: dist/
+  
