@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-
+    name: Test HubSpot Schema Manager
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +39,10 @@ jobs:
           python -m pytest -q
 
   build:
-
+    name: Build HubSpot Schema Manager
+    if: github.event_name != 'pull_request'
+    needs:
+      - test
     runs-on: ubuntu-latest
     
     steps:
