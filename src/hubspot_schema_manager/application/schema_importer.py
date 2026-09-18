@@ -1,6 +1,6 @@
 """Orchestrates the import: reads definitions from a source and syncs them to HubSpot."""
-from src.infrastructure.readers import SourceReader
-from src.infrastructure.repositories import (
+from hubspot_schema_manager.infrastructure.readers import SourceReader
+from hubspot_schema_manager.infrastructure.repositories import (
     AssociationRepository,
     PropertyRepository,
     SchemaRepository

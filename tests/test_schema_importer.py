@@ -1,9 +1,13 @@
 """Tests for SchemaImporter orchestration using fake reader/repositories."""
 from typing import cast
 
-from src.application.schema_importer import SchemaImporter
-from src.domain.models import AssociationDefinition, ObjectSchemaDefinition, PropertyDefinition
-from src.infrastructure.repositories import (
+from hubspot_schema_manager.application.schema_importer import SchemaImporter
+from hubspot_schema_manager.domain.models import (
+    AssociationDefinition,
+    ObjectSchemaDefinition,
+    PropertyDefinition
+)
+from hubspot_schema_manager.infrastructure.repositories import (
     AssociationRepository,
     PropertyRepository,
     SchemaRepository,

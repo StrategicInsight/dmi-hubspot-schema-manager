@@ -1,6 +1,10 @@
 """Repositories: one class per HubSpot resource type, each with a single responsibility."""
-from src.infrastructure.hubspot_client import HttpClient
-from src.domain.models import AssociationDefinition, ObjectSchemaDefinition, PropertyDefinition
+from hubspot_schema_manager.infrastructure.hubspot_client import HttpClient
+from hubspot_schema_manager.domain.models import (
+    AssociationDefinition,
+    ObjectSchemaDefinition,
+    PropertyDefinition
+)
 
 
 class SchemaRepository:

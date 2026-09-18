@@ -1,5 +1,9 @@
 """Tests for domain models: row parsing, defaults, and payload shaping."""
-from src.domain.models import AssociationDefinition, ObjectSchemaDefinition, PropertyDefinition
+from hubspot_schema_manager.domain.models import (
+    AssociationDefinition,
+    ObjectSchemaDefinition,
+    PropertyDefinition
+)
 
 # pylint: disable=missing-function-docstring
 class TestObjectSchemaDefinition:

@@ -4,7 +4,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from domain.models import AssociationDefinition, ObjectSchemaDefinition, PropertyDefinition
+from hubspot_schema_manager.domain.models import (
+    AssociationDefinition,
+    ObjectSchemaDefinition,
+    PropertyDefinition
+)
 
 OBJECT_SHEET_NAMES = ("objects", "schemas", "custom_objects")
 ASSOCIATION_SHEET_NAMES = ("associations", "association_labels", "labels")
