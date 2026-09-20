@@ -131,6 +131,127 @@ Recognized worksheet names:
 
 If no property sheet matches, the importer falls back to the first worksheet.
 
+## Schema Template
+
+The repository includes a sample workbook at `data\schema_definitions.xlsx` with three sheets:
+
+- `Objects`
+- `Properties`
+- `Associations`
+
+The code that reads the workbook lives in `src/hubspot_schema_manager/infrastructure/readers.py`, and the row-to-model mapping lives in `src/hubspot_schema_manager/domain/models.py`.
+
+### Objects Sheet
+
+Columns:
+
+- `name`: Internal HubSpot object name. This should be lowercase and API-safe, for example `asset`.
+- `singularLabel`: Singular UI label shown in HubSpot, for example `Asset`.
+- `pluralLabel`: Plural UI label shown in HubSpot, for example `Assets`.
+- `primaryDisplayProperty`: Internal name of the main text property used to represent the record.
+- `primaryDisplayLabel`: UI label for the primary display property.
+- `associatedObjects`: Comma-separated list of objects this custom object can associate with when the schema is created.
+
+Sample row:
+
+| name | singularLabel | pluralLabel | primaryDisplayProperty | primaryDisplayLabel | associatedObjects |
+| --- | --- | --- | --- | --- | --- |
+| asset | Asset | Assets | fum_record_type | FUM Record Type | CONTACT,COMPANY,PRODUCT |
+
+Notes:
+
+- If `singularLabel` is blank, the code defaults to a capitalized form of `name`.
+- If `pluralLabel` is blank, the code defaults to the capitalized name plus `s`.
+- If `primaryDisplayProperty` is blank, the code defaults to `<name>_name`.
+- If `primaryDisplayLabel` is blank, the code defaults to `<Name> Name`.
+- The object model also supports `requiredProperties` and `searchableProperties`, but those columns are not present in the shipped workbook template. When omitted, both default to the primary display property.
+- If `associatedObjects` is blank, the code defaults to `CONTACT,COMPANY`.
+
+### Properties Sheet
+
+Columns:
+
+- `object`: The target object type for the property, for example `contacts`, `companies`, or a custom object such as `asset`.
+- `name`: Internal HubSpot property name.
+- `label`: UI label shown in HubSpot.
+- `type`: HubSpot storage type, such as `string`, `number`, `date`, `datetime`, `bool`, or `enumeration`.
+- `fieldType`: HubSpot field control type, such as `text`, `textarea`, `select`, `radio`, `checkbox`, or `date`.
+- `groupName`: HubSpot property group name.
+- `options`: Comma-separated option values for enumerated fields. You can use either `Label` or `Label:value` format.
+- `unique`: Whether HubSpot should enforce unique values for this property.
+
+Sample rows:
+
+| object | name | label | type | fieldType | groupName | options | unique |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| contacts | contact_record_type | Contact Record Type | string | text | contactinformation |  | false |
+| asset | asset_status | Asset Status | enumeration | select | custom_properties | Active:active, Inactive:inactive | false |
+
+Notes:
+
+- If `label` is blank, the code defaults it to the property `name`.
+- If `type` is blank, the code defaults to `string`.
+- If `fieldType` is blank, the code defaults to `text`.
+- If `groupName` is blank, the code defaults to `contactinformation` for `contacts` and `custom_properties` for every other object type.
+- `unique` is treated as true only when the value is `true`, `1`, or `yes`.
+- For `options`, `Red, Blue` becomes `red` and `blue` internally, while `Red:red, Blue:blue` preserves the explicit values.
+
+### Associations Sheet
+
+Columns:
+
+- `fromObject`: The source object type.
+- `toObject`: The target object type.
+- `label`: The forward label shown from the `fromObject` side.
+- `inverseLabel`: The reverse label shown from the `toObject` side.
+- `name`: Internal association definition name.
+
+Sample rows:
+
+| fromObject | toObject | label | inverseLabel | name |
+| --- | --- | --- | --- | --- |
+| contacts | companies | Account | Contacts | account_contact |
+| asset | contacts | FUM Contact | Financial Feeds | fum_contact |
+| companies | companies | Umbrella Account | Child Accounts | umbrella_account |
+
+How to read them:
+
+- `contacts -> companies` with `Account / Contacts` means a contact points to a company as its `Account`, and the company sees those related contacts as `Contacts`.
+- `asset -> contacts` with `FUM Contact / Financial Feeds` means an asset points to a contact as its `FUM Contact`, and the contact sees those related assets as `Financial Feeds`.
+- `companies -> companies` with `Umbrella Account / Child Accounts` is a self-association where one company is the parent-side account and the other is the child-side account.
+
+Notes:
+
+- `fromObject`, `toObject`, and `label` are required for a valid row.
+- If `inverseLabel` is blank, the code defaults it to the same value as `label`.
+- If `name` is blank, the code defaults it to a lowercase underscore version of `label`.
+
+### Association Cardinality
+
+This workbook does not define hard cardinality such as one-to-one, one-to-many, or many-to-many.
+
+What this importer creates is the association label definition only. The payload sent by the code contains:
+
+- `label`
+- `inverseLabel`
+- `name`
+
+That means:
+
+- You cannot determine cardinality from the template alone.
+- The README examples on the `Associations` sheet describe relationship meaning, not relationship count limits.
+- Custom association rows should be treated as label definitions, not as enforcement rules.
+
+In practice, cardinality is determined outside this workbook flow:
+
+- By HubSpot built-in association behavior for certain default association types
+- By HubSpot association limits or settings configured separately
+- By your application logic if you choose to enforce stricter rules yourself
+
+Example:
+
+- `contacts -> companies` with label `Account` does not mean one contact can only ever have one account. It only defines the label unless HubSpot or external logic enforces a stricter rule.
+
 ### CSV
 
 CSV handling is intentionally simple:
